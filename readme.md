@@ -1,99 +1,104 @@
-Nginx ("engine x") ÊÇÒ»¸ö¸ßĞÔÄÜµÄ HTTP ºÍ ·´Ïò´úÀí ·şÎñÆ÷£¬Ò²ÊÇÒ»¸ö IMAP/POP3/SMTP ´úÀí·şÎñÆ÷¡£ Nginx ÊÇÓÉ Igor Sysoev Îª¶íÂŞË¹·ÃÎÊÁ¿µÚ¶şµÄ Rambler.ru Õ¾µã¿ª·¢µÄ£¬µÚÒ»¸ö¹«¿ª°æ±¾0.1.0·¢²¼ÓÚ2004Äê10ÔÂ4ÈÕ¡£Æä½«Ô´´úÂëÒÔÀàBSDĞí¿ÉÖ¤µÄĞÎÊ½·¢²¼£¬ÒòËüµÄÎÈ¶¨ĞÔ¡¢·á¸»µÄ¹¦ÄÜ¼¯¡¢Ê¾ÀıÅäÖÃÎÄ¼şºÍµÍÏµÍ³×ÊÔ´µÄÏûºÄ¶øÎÅÃû¡£
 
-°²×°NginxÒÀÀµ¿â
+apt-get install nginx
 
-°²×°gcc g++µÄÒÀÀµ¿â
-ubuntuÆ½Ì¨¿ÉÒÔÊ¹ÓÃÈçÏÂÃüÁî¡£
+
+
+Nginx ("engine x") æ˜¯ä¸€ä¸ªé«˜æ€§èƒ½çš„ HTTP å’Œ åå‘ä»£ç† æœåŠ¡å™¨ï¼Œä¹Ÿæ˜¯ä¸€ä¸ª IMAP/POP3/SMTP ä»£ç†æœåŠ¡å™¨ã€‚ Nginx æ˜¯ç”± Igor Sysoev ä¸ºä¿„ç½—æ–¯è®¿é—®é‡ç¬¬äºŒçš„ Rambler.ru ç«™ç‚¹å¼€å‘çš„ï¼Œç¬¬ä¸€ä¸ªå…¬å¼€ç‰ˆæœ¬0.1.0å‘å¸ƒäº2004å¹´10æœˆ4æ—¥ã€‚å…¶å°†æºä»£ç ä»¥ç±»BSDè®¸å¯è¯çš„å½¢å¼å‘å¸ƒï¼Œå› å®ƒçš„ç¨³å®šæ€§ã€ä¸°å¯Œçš„åŠŸèƒ½é›†ã€ç¤ºä¾‹é…ç½®æ–‡ä»¶å’Œä½ç³»ç»Ÿèµ„æºçš„æ¶ˆè€—è€Œé—»åã€‚
+
+å®‰è£…Nginxä¾èµ–åº“
+
+å®‰è£…gcc g++çš„ä¾èµ–åº“
+ubuntuå¹³å°å¯ä»¥ä½¿ç”¨å¦‚ä¸‹å‘½ä»¤ã€‚
 
 apt-get install build-essential
 apt-get install libtool
-centerosÆ½Ì¨¿ÉÒÔÊ¹ÓÃÈçÏÂÃüÁî¡£
+centeroså¹³å°å¯ä»¥ä½¿ç”¨å¦‚ä¸‹å‘½ä»¤ã€‚
 
 
-centosÆ½Ì¨±àÒë»·¾³Ê¹ÓÃÈçÏÂÖ¸Áî
-°²×°make£º
+centoså¹³å°ç¼–è¯‘ç¯å¢ƒä½¿ç”¨å¦‚ä¸‹æŒ‡ä»¤
+å®‰è£…makeï¼š
 yum -y install gcc automake autoconf libtool make
  
-°²×°g++:
-yum install gcc gcc-c++¡¡¡¡
-°²×° pcreÒÀÀµ¿â£¨http://www.pcre.org/£©
+å®‰è£…g++:
+yum install gcc gcc-c++ã€€ã€€
+å®‰è£… pcreä¾èµ–åº“ï¼ˆhttp://www.pcre.org/ï¼‰
 1
 2
 sudo apt-get update
 sudo apt-get install libpcre3 libpcre3-dev
-°²×° zlibÒÀÀµ¿â£¨http://www.zlib.net£©
+å®‰è£… zlibä¾èµ–åº“ï¼ˆhttp://www.zlib.netï¼‰
 1
 apt-get install zlib1g-dev
-°²×° sslÒÀÀµ¿â
+å®‰è£… sslä¾èµ–åº“
 1
 apt-get install openssl
-°²×°Nginx£¨http://nginx.org£©
+å®‰è£…Nginxï¼ˆhttp://nginx.orgï¼‰
 
 
-#ÏÂÔØ×îĞÂ°æ±¾£º
+#ä¸‹è½½æœ€æ–°ç‰ˆæœ¬ï¼š
 wget http://nginx.org/download/nginx-1.11.3.tar.gz
-#½âÑ¹£º
+#è§£å‹ï¼š
 tar -zxvf nginx-1.11.3.tar.gz
-#½øÈë½âÑ¹Ä¿Â¼£º
+#è¿›å…¥è§£å‹ç›®å½•ï¼š
 cd nginx-1.11.3
-#ÅäÖÃ£º
+#é…ç½®ï¼š
 ./configure --prefix=/usr/local/nginx 
-#±à¼­nginx£º
+#ç¼–è¾‘nginxï¼š
 make
-×¢Òâ£ºÕâÀï¿ÉÄÜ»á±¨´í£¬ÌáÊ¾¡°pcre.h No such file or directory¡±,¾ßÌåÏê¼û£ºhttp://stackoverflow.com/questions/22555561/error-building-fatal-error-pcre-h-no-such-file-or-directory
-ĞèÒª°²×° libpcre3-dev,ÃüÁîÎª£ºsudo apt-get install libpcre3-dev
-#°²×°nginx£º
+æ³¨æ„ï¼šè¿™é‡Œå¯èƒ½ä¼šæŠ¥é”™ï¼Œæç¤ºâ€œpcre.h No such file or directoryâ€,å…·ä½“è¯¦è§ï¼šhttp://stackoverflow.com/questions/22555561/error-building-fatal-error-pcre-h-no-such-file-or-directory
+éœ€è¦å®‰è£… libpcre3-dev,å‘½ä»¤ä¸ºï¼šsudo apt-get install libpcre3-dev
+#å®‰è£…nginxï¼š
 sudo make install
-#Æô¶¯nginx£º
+#å¯åŠ¨nginxï¼š
 sudo /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
-×¢Òâ£º-c Ö¸¶¨ÅäÖÃÎÄ¼şµÄÂ·¾¶£¬²»¼ÓµÄ»°£¬nginx»á×Ô¶¯¼ÓÔØÄ¬ÈÏÂ·¾¶µÄÅäÖÃÎÄ¼ş£¬¿ÉÒÔÍ¨¹ı -h²é¿´°ïÖúÃüÁî¡£
-#²é¿´nginx½ø³Ì£º
+æ³¨æ„ï¼š-c æŒ‡å®šé…ç½®æ–‡ä»¶çš„è·¯å¾„ï¼Œä¸åŠ çš„è¯ï¼Œnginxä¼šè‡ªåŠ¨åŠ è½½é»˜è®¤è·¯å¾„çš„é…ç½®æ–‡ä»¶ï¼Œå¯ä»¥é€šè¿‡ -hæŸ¥çœ‹å¸®åŠ©å‘½ä»¤ã€‚
+#æŸ¥çœ‹nginxè¿›ç¨‹ï¼š
 ps -ef|grep nginx
-Nginx³£ÓÃÃüÁî
+Nginxå¸¸ç”¨å‘½ä»¤
 
-Æô¶¯ Nginx
+å¯åŠ¨ Nginx
 
 /usr/local/nginx/sbin/nginx
  
-./sbin/nginx¡¡
-Í£Ö¹ Nginx
+./sbin/nginxã€€
+åœæ­¢ Nginx
 
 ./sbin/nginx -s stop
  
 ./sbin/nginx -s quit
--s¶¼ÊÇ²ÉÓÃÏò Nginx ·¢ËÍĞÅºÅµÄ·½Ê½¡£
-NginxÖØĞÂ¼ÓÔØÅäÖÃ
+-séƒ½æ˜¯é‡‡ç”¨å‘ Nginx å‘é€ä¿¡å·çš„æ–¹å¼ã€‚
+Nginxé‡æ–°åŠ è½½é…ç½®
 ./sbin/nginx -s reload
-Ö¸¶¨ÅäÖÃÎÄ¼ş
+æŒ‡å®šé…ç½®æ–‡ä»¶
 ./sbin/nginx -c /usr/local/nginx/conf/nginx.conf
--c±íÊ¾configuration£¬Ö¸¶¨ÅäÖÃÎÄ¼ş
-²é¿´ Nginx °æ±¾
-ÓĞÁ½ÖÖ¿ÉÒÔ²é¿´ Nginx µÄ°æ±¾ĞÅÏ¢µÄ²ÎÊı¡£µÚÒ»ÖÖÈçÏÂ£º
+-cè¡¨ç¤ºconfigurationï¼ŒæŒ‡å®šé…ç½®æ–‡ä»¶
+æŸ¥çœ‹ Nginx ç‰ˆæœ¬
+æœ‰ä¸¤ç§å¯ä»¥æŸ¥çœ‹ Nginx çš„ç‰ˆæœ¬ä¿¡æ¯çš„å‚æ•°ã€‚ç¬¬ä¸€ç§å¦‚ä¸‹ï¼š
 ./sbin/nginx -v
  
 nginx: nginx version: nginx/1.0.0
-ÁíÒ»ÖÖÏÔÊ¾µÄÊÇÏêÏ¸µÄ°æ±¾ĞÅÏ¢£º
+å¦ä¸€ç§æ˜¾ç¤ºçš„æ˜¯è¯¦ç»†çš„ç‰ˆæœ¬ä¿¡æ¯ï¼š
 
 poechant@ubuntu:/usr/local/nginx$ ./sbin/nginx -V
 nginx: nginx version: nginx/1.0.0
 nginx: built by gcc 4.3.3 (Ubuntu 4.3.3-5ubuntu4)
 nginx: TLS SNI support enabled
 nginx: configure arguments: --with-http_ssl_module --with-openssl=/home/luming/openssl-1.0.0d/
-¼ì²éÅäÖÃÎÄ¼şÊÇ·ñÕıÈ·
+æ£€æŸ¥é…ç½®æ–‡ä»¶æ˜¯å¦æ­£ç¡®
 
 poechant@ubuntu:/usr/local/nginx$ ./sbin/nginx -t
 nginx: [alert] could not open error log file: open() "/usr/local/nginx/logs/error.log" failed (13: Permission denied)
 nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok
 2012/01/09 16:45:09 [emerg] 23898#0: open() "/usr/local/nginx/logs/nginx.pid" failed (13: Permission denied)
 nginx: configuration file /usr/local/nginx/conf/nginx.conf test failed
-Èç¹û³öÏÖÈçÉÏµÄÌáÊ¾ĞÅÏ¢£¬±íÊ¾Ã»ÓĞ·ÃÎÊ´íÎóÈÕÖ¾ÎÄ¼şºÍ½ø³Ì£¬¿ÉÒÔsudo£¨super user do£©Ò»ÏÂ£º
+å¦‚æœå‡ºç°å¦‚ä¸Šçš„æç¤ºä¿¡æ¯ï¼Œè¡¨ç¤ºæ²¡æœ‰è®¿é—®é”™è¯¯æ—¥å¿—æ–‡ä»¶å’Œè¿›ç¨‹ï¼Œå¯ä»¥sudoï¼ˆsuper user doï¼‰ä¸€ä¸‹ï¼š
 
 poerchant@ubuntu:/usr/local/nginx$ sudo ./sbin/nginx -t
 nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok
 nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
-Èç¹ûÏÔÊ¾ÈçÉÏ£¬Ôò±íÊ¾ÅäÖÃÎÄ¼şÕıÈ·¡£·ñÔò£¬»áÓĞÏà¹ØÌáÊ¾¡£
-ÏÔÊ¾°ïÖúĞÅÏ¢
+å¦‚æœæ˜¾ç¤ºå¦‚ä¸Šï¼Œåˆ™è¡¨ç¤ºé…ç½®æ–‡ä»¶æ­£ç¡®ã€‚å¦åˆ™ï¼Œä¼šæœ‰ç›¸å…³æç¤ºã€‚
+æ˜¾ç¤ºå¸®åŠ©ä¿¡æ¯
 
 poechant@ubuntu:/user/local/nginx$ ./sbin/nginx -h
-»òÕß£º
+æˆ–è€…ï¼š
 poechant@ubuntu:/user/local/nginx$ ./sbin/nginx -?
